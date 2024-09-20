@@ -3,3 +3,5 @@ SQLite4
 datetime
 beautifulsoup4
 python-dotenv
+requests
+requests-oauthlib
