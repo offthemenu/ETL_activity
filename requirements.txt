@@ -4,4 +4,6 @@ datetime
 beautifulsoup4
 python-dotenv
 requests
-requests-oauthlib
+selenium
+time
+selenium-stealth
