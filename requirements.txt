@@ -5,5 +5,5 @@ beautifulsoup4
 python-dotenv
 requests
 selenium
-time
-selenium-stealth
+praw
+textblob
