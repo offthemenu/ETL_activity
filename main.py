@@ -66,7 +66,7 @@ def get_df_of_listings(page_depth):
 
     art_list = get_listing(page_depth)
 
-    artNetDict = {}
+    art_data = []
 
     for index, art in enumerate(art_list, 1):
         artist_element = art.find("li", class_ = "ng-binding")
@@ -109,31 +109,27 @@ def get_df_of_listings(page_depth):
         
         # print(artist_name, piece_name, price, currency, bids) -> to see if it all turned out okay
         
-        artNetDict[index] = {}
-        artNetDict[index]["Name"] = artist_name
-        artNetDict[index]["Piece"] = piece_name
-        artNetDict[index]["CurrentPrice"] = price
-        artNetDict[index]["Currency"] = currency
-        artNetDict[index]["NumBids"] = bids
-        artNetDict[index]["DaysLeft"] = expiration
+        art_data.append({
+            "Artist": artist_name,
+            "Name of Piece": piece_name,
+            "Current Price": price,
+            "Currency": currency,
+            "Num of Bids": bids,
+            "Days Left": expiration
+            })
 
-    col_names = ["Artist", "Name of Piece", "Current Price", "Currency", "Num of Bids", "Days Left"]
-    art_df = pd.DataFrame(columns=col_names)
+    art_df = pd.DataFrame(art_data)
 
-    for key, value in artNetDict.items():
-        row = pd.DataFrame({"Artist": [value["Name"]], "Name of Piece": [value["Piece"]], "Current Price": [value["CurrentPrice"]], "Currency": [value["Currency"]], "Num of Bids": [value["NumBids"]], "Days Left": [value["DaysLeft"]]})
-        art_df = pd.concat([art_df, row], ignore_index= True)
-
-    art_df = art_df.sort_values(by=["Days Left"], ascending= True).reset_index().drop(columns=["index"])
+    art_df = art_df.sort_values(by=["Days Left"], ascending= True).reset_index(drop=True)
 
     return art_df
 
-def get_unique_artists(art_dataframe):
+def get_unique_artists(artwork_dataframe):
     
     unique_artists = []
 
-    for n in range(0,len(art_dataframe.Artist.unique())):
-        name = art_dataframe.Artist.unique()[n]
+    for n in range(0,len(artwork_dataframe.Artist.unique())):
+        name = artwork_dataframe.Artist.unique()[n]
         unique_artists.append(name)
 
     return unique_artists
@@ -167,34 +163,41 @@ def get_sentiment_score(artist_name):
     sentiment_analyzer = SentimentIntensityAnalyzer()
 
     compound_scores = []
-
+    
     for index, comment in enumerate(commentList, 1):
         vs = sentiment_analyzer.polarity_scores(comment)
         compound_scores.append(vs["compound"])
-
-    compound_scores
-
-    mean_score = float(np.mean(compound_scores))
+    
+    if len(compound_scores) > 0:
+        mean_score = float(np.mean(compound_scores))
+    elif len(compound_scores) == 0:
+        mean_score = 0.0
     return mean_score
 
-def get_artist_score_pairing(artist_names_list):
-    scores_dict = {}
+def get_artist_score_df(artist_names_list):
+    scores_list = []
 
     for name in artist_names_list:
         score = get_sentiment_score(name)
-        scores_dict[name] = score
+        scores_list.append({"Artist": name, "Sentiment Score": score})
     
-    return scores_dict
+    scores_df = pd.DataFrame(scores_list)
+    
+    return scores_df
 
 current_listings_df = get_df_of_listings(4)
-current_artists = get_unique_artists(current_listings_df)
-current_scores_dict = get_artist_score_pairing(current_artists)
+current_artists_list = get_unique_artists(current_listings_df)
+current_scores_df = get_artist_score_df(current_artists_list)
 
-for index, row in current_listings_df.iterrows():
-    for key, value in current_scores_dict.items():
-        if row.Artist == key:
-            row["Average Sentiment Score"] = value
+def get_final_df(df_of_listings, df_of_scores):
+    merged_df = pd.merge(df_of_listings, df_of_scores, how="left", left_on="Artist", right_on="Artist")
+    for index, row in merged_df.iterrows():
+        if row["Sentiment Score"] > 0.1:
+            merged_df.loc[index, "Bid Action"] = "Bid Higher"
+        else:
+            merged_df.loc[index, "Bid Action"] = "Do Not Bid"
+    
+    return merged_df
 
-
-print(current_listings_df)
-print(current_artists)
+recs_df = get_final_df(current_listings_df, current_scores_df)
+print(recs_df)
