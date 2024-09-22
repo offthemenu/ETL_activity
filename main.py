@@ -76,49 +76,64 @@ def get_df_of_listings(page_depth):
     art_list = get_listing(page_depth)
     # Initialize list for artwork data
     art_data = []
-
     
     for index, art in enumerate(art_list, 1):
+        # Extract the artist name
         artist_element = art.find("li", class_ = "ng-binding")
         if artist_element:
+            # Clean and store the artist's name
             artist_name = artist_element.text.strip()
         else:
+            # skip if the name's missing
             print(f"Missing artist name")
             continue
 
+        # Extract the name of the artwork
         piece_element = art.find("em", class_ = "ng-binding")
         if piece_element:
+            # Clean and store the piece's title
             piece_name = piece_element.text.strip()
         else:
+            # and skip if not found
             print(f"Missing piece name")
             continue
 
+        # Extract the current price and number of bids
         price_element = art.find('li', class_="ng-binding ng-scope").text.strip()
         if "Bids" in price_element:
+            # Split price and bid 
             price_text, bid_text = price_element.split(" (")
+            # Split price and currency notation
             price, currency = price_text.split(" ")
+            # Convert the price into a float variable
             price = float(price.replace(",", ""))
+            # Extract the number of bids
             bids = int(bid_text.replace("Bids)",""))
         elif "Bid" in price_element:
+            # This means there's only one bid at the moment
             price_text, bid_text = price_element.split(" (")
             price, currency = price_text.split(" ")
             price = float(price.replace(",", ""))
+            # default to 1 bid
             bids = 1
         else:
+            # If there isn't a single bid at the moment, we calculate the average price based on the range provided and store it as the price value
             price_range, currency = price_element.split(" ")
             lower_bound, upper_bound = price_range.split("—")
             lower_bound = float(lower_bound.replace(",",""))
             upper_bound = float(upper_bound.replace(",",""))
             price = float(np.mean([lower_bound, upper_bound]))
+            # default to 0 bids
             bids = 0
 
+        # Extract the number of days left until the auction ends for that particular piece
         expiration_element = art.find('li', {"ng-class": "{'red' : brick.Remaining.Days <= 0}"}).text.strip()
         if expiration_element:
+            # extract the expiration value and turn it into an integer
             expiration, daysText, remainingText = expiration_element.split(" ")
             expiration = int(expiration)
         
-        # print(artist_name, piece_name, price, currency, bids) -> to see if it all turned out okay
-        
+        # Store the artwork information in a dictionary and append to the list
         art_data.append({
             "Artist": artist_name,
             "Name of Piece": piece_name,
@@ -127,21 +142,29 @@ def get_df_of_listings(page_depth):
             "Num of Bids": bids,
             "Days Left": expiration
             })
-
+    
+    # Turn the list of dictionaries into a pandas dataframe
     art_df = pd.DataFrame(art_data)
 
+    # Sor the dataframe by "days left"
     art_df = art_df.sort_values(by=["Days Left"], ascending= True).reset_index(drop=True)
 
+    # Return the dataframe containing the current listings
     return art_df
 
+
 def get_unique_artists(artwork_dataframe):
-    
+    '''
+    Extracts and returns a list of unique artist names from the DataFrame.
+    '''
+    # Initialize an empty list to store unique artist names
     unique_artists = []
 
+    # Extract unique artist names and append them to the list
     for n in range(0,len(artwork_dataframe.Artist.unique())):
         name = artwork_dataframe.Artist.unique()[n]
         unique_artists.append(name)
-
+    # Return the list of unique artist names present in the dataframe
     return unique_artists
 
 # Reddit r/Art portion:
@@ -149,6 +172,7 @@ def get_unique_artists(artwork_dataframe):
 # Load environment variables
 load_dotenv()
 
+# Initialize Reddit API with relevant credentials stored in .env file
 reddit = praw.Reddit(
     client_id=os.getenv('REDDIT_CLIENT_ID'),
     client_secret=os.getenv('REDDIT_CLIENT_SECRET'),
@@ -158,62 +182,94 @@ reddit = praw.Reddit(
 )
 
 def get_sentiment_score(artist_name):
-
+    '''
+    Searches for discussions about the artist on Reddit (r/Art) and computes the average sentiment score.
+    '''
+    # Initialize a list to store comments
     commentList = []
+
+    # Search Reddit for artist
     submissions = reddit.subreddit("Art").search(f"{artist_name.lower()}", sort = "relevance")
     
     for submission in submissions:
+        # Expand hidden comments
         submission.comments.replace_more(limit=0)  # Expand the "load more" comments
         for top_level_comment in submission.comments:
-            
             # Check if comment has a body (not deleted or removed)
             if top_level_comment.body:
+                # Append it to the comments list 
                 commentList.append(top_level_comment.body.lower())
 
+    # Initialize VADER sentiment analysis tool
     sentiment_analyzer = SentimentIntensityAnalyzer()
 
+    # Initialize a list to store the compound scores
     compound_scores = []
     
-    for index, comment in enumerate(commentList, 1):
+    # Analyze sentiment of each comment
+    for comment in commentList:
         vs = sentiment_analyzer.polarity_scores(comment)
+        # Append the compound score to the list above
         compound_scores.append(vs["compound"])
     
+    # Calculate the mean sentiment score; default to 0 if no score was calculated
     if len(compound_scores) > 0:
         mean_score = float(np.mean(compound_scores))
     elif len(compound_scores) == 0:
         mean_score = 0.0
+    
+    # Return the average sentiment score
     return mean_score
 
 def get_artist_score_df(artist_names_list):
+    '''
+    Generates a DataFrame containing the sentiment scores for a list of artists.
+    '''
+    # Initialize a list to store the compound scores for each of the artists found in the listing
     scores_list = []
 
     for name in artist_names_list:
+        # Get sentiment score for each artist
         score = get_sentiment_score(name)
+        # Append the result as a dictionary
         scores_list.append({"Artist": name, "Sentiment Score": score})
-    
+    # Convert the list to pandas dataframe
     scores_df = pd.DataFrame(scores_list)
     
+    # Return the dataframe of sentiment scores
     return scores_df
 
+# Get artwork listings and unique artists
 current_listings_df = get_df_of_listings(4)
 current_artists_list = get_unique_artists(current_listings_df)
 current_scores_df = get_artist_score_df(current_artists_list)
 
 def get_final_df(df_of_listings, df_of_scores, disposable_income):
+    '''
+    Merges artwork listings with sentiment scores and provides bid recommendations based on sentiment and budget.
+    '''
+
     print(f"Based on your budget of {disposable_income}, here are our recommendations in a dataframe form...")
+    
+    # Merge listings and sentiment scores DataFrames on the Artist column
     merged_df = pd.merge(df_of_listings, df_of_scores, how="left", left_on="Artist", right_on="Artist")
+    
+    # Iterate over each row and decide whether to recommend bidding or not based on the sentiment score and current price vs. budget/limit price
     for index, row in merged_df.iterrows():
         if row["Sentiment Score"] > 0.1 and row["Current Price"] < disposable_income:
             merged_df.loc[index, "Bid Action"] = "Bid Higher"
         else:
             merged_df.loc[index, "Bid Action"] = "Do Not Bid"
     
+    # Return the DataFrame with bid recommendations
     return merged_df
 
+# Get user's budget
 limit_price = float(input("How much are you willing to spend on a piece of artwork? "))
 
+# Generate recommendations based on sentiment scores and budget
 recs_df = get_final_df(current_listings_df, current_scores_df, limit_price).sort_values(by=["Sentiment Score"], ascending= False)
 
+# Export the recommendations to a CSV file
 today_date = date.today()
-
 recs_df.to_csv(f"bid_recs_{today_date}.csv", index=False)
