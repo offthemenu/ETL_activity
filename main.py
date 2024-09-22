@@ -180,5 +180,22 @@ def get_sentiment_score(artist_name):
     mean_score = float(np.mean(compound_scores))
     return mean_score
 
+def get_artist_score_pairing(artist_names_list):
+    scores_dict = {}
+
+    for name in artist_names_list:
+        score = get_sentiment_score(name)
+        scores_dict[name] = score
+    
+    return scores_dict
+
+current_scores_dict = get_artist_score_pairing(current_artists)
+
+for index, row in current_listings_df.iterrows():
+    for key, value in current_scores_dict.items():
+        if row.Artist == key:
+            row["Average Sentiment Score"] = value
+
+
 print(current_listings_df)
 print(current_artists)
