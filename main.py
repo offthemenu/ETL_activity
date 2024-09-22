@@ -138,9 +138,6 @@ def get_unique_artists(art_dataframe):
 
     return unique_artists
 
-current_listings_df = get_df_of_listings(4)
-current_artists = get_unique_artists(current_listings_df)
-
 # Reddit r/Art portion:
 
 # Load environment variables
@@ -189,6 +186,8 @@ def get_artist_score_pairing(artist_names_list):
     
     return scores_dict
 
+current_listings_df = get_df_of_listings(4)
+current_artists = get_unique_artists(current_listings_df)
 current_scores_dict = get_artist_score_pairing(current_artists)
 
 for index, row in current_listings_df.iterrows():
