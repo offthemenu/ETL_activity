@@ -1,4 +1,5 @@
 import os
+from datetime import date
 import time
 import random
 from dotenv import load_dotenv
@@ -18,7 +19,9 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 def get_listing(page_depth):
     '''
-    page_depth must be an integer value. For this prototype version, we recommend that you scroll down all the way through the bottom of ArtNet's listings to see how many pages there are when you run this code.
+    page_depth must be an integer value. For this prototype version, 
+    we recommend that you scroll down all the way through the bottom of ArtNet's listings 
+    to see how many pages there are when you run this code.
     '''
     art_list = []
 
@@ -189,15 +192,20 @@ current_listings_df = get_df_of_listings(4)
 current_artists_list = get_unique_artists(current_listings_df)
 current_scores_df = get_artist_score_df(current_artists_list)
 
-def get_final_df(df_of_listings, df_of_scores):
+def get_final_df(df_of_listings, df_of_scores, disposable_income):
     merged_df = pd.merge(df_of_listings, df_of_scores, how="left", left_on="Artist", right_on="Artist")
     for index, row in merged_df.iterrows():
-        if row["Sentiment Score"] > 0.1:
+        if row["Sentiment Score"] > 0.1 and row["Current Price"] < disposable_income:
             merged_df.loc[index, "Bid Action"] = "Bid Higher"
         else:
             merged_df.loc[index, "Bid Action"] = "Do Not Bid"
     
     return merged_df
 
-recs_df = get_final_df(current_listings_df, current_scores_df)
-print(recs_df)
+limit_price = float(input("How much are you willing to spend on a piece of artwork? "))
+
+recs_df = get_final_df(current_listings_df, current_scores_df, limit_price).sort_values(by=["Sentiment Score"], ascending= False)
+
+today_date = date.today()
+
+recs_df.to_csv(f"bid_recs_{today_date}".csv, index=False)
