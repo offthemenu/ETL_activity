@@ -1,4 +1,4 @@
-# Art Auction Sentiment Analyzer
+# To Bid or Not To Bid
 
 This Python project scrapes artwork listings from ArtNet Auctions and combines sentiment analysis from Reddit discussions to provide recommendations on whether to bid on an artwork based on both price and sentiment. It helps art enthusiasts make informed decisions by analyzing public opinion and auction data.
 

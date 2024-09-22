@@ -19,12 +19,14 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 def get_listing(page_depth):
     '''
-    page_depth must be an integer value. For this prototype version, 
-    we recommend that you scroll down all the way through the bottom of ArtNet's listings 
-    to see how many pages there are when you run this code.
+    Scrapes artwork listings from ArtNet up to the given page depth.
+    page_depth must be an integer value indicating the number of pages to scrape.
+    For this prototype version, we recommend that you scroll down all the way through the bottom of ArtNet's listings to see how many pages there are when you run this code.
     '''
+    # Initialize an empty list to store artwork information
     art_list = []
 
+    # List of user-agents to rotate to mimic human browsing and avoid bot detection
     user_agents = [
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36",
@@ -32,8 +34,9 @@ def get_listing(page_depth):
     ]
 
     for n in range(1,page_depth+1):
-        # Rotate user-agent
+        # Rotate user-agent randomly
         user_agent = random.choice(user_agents)
+
         # Set up options to use a custom User-Agent
         chrome_options = Options()
         chrome_options.add_argument(f"user-agent={user_agent}")
@@ -53,9 +56,9 @@ def get_listing(page_depth):
         # Parse the page source using BeautifulSoup
         soup = BeautifulSoup(driver.page_source, 'html.parser')
 
-        # Extract the artwork data 
+        # Find all div elements with class 'details' that contain artwork information
         artworks = soup.find_all('div', class_='details')
-        art_list += artworks 
+        art_list += artworks # Add the scraped artworks to the art_list
 
         # Close the WebDriver after scraping
         driver.quit()
@@ -63,14 +66,18 @@ def get_listing(page_depth):
         # Introduce a random delay to avoid bot detection (2-6 seconds)
         time.sleep(random.uniform(2, 6))
 
-    return art_list
+    return art_list # Return the list of artworks from all pages
 
 def get_df_of_listings(page_depth):
-
+    '''
+    Extracts relevant information from the listing pages and returns a DataFrame containing the artist name, piece name, current price, currency, number of bids, and days left.
+    '''
+    # Scrape the listing pages
     art_list = get_listing(page_depth)
-
+    # Initialize list for artwork data
     art_data = []
 
+    
     for index, art in enumerate(art_list, 1):
         artist_element = art.find("li", class_ = "ng-binding")
         if artist_element:
