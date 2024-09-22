@@ -17,6 +17,9 @@ import praw
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 def get_listing(page_depth):
+    '''
+    page_depth must be an integer value. For the preliminary version of 
+    '''
     art_list = []
 
     user_agents = [
@@ -57,7 +60,7 @@ def get_listing(page_depth):
         # Introduce a random delay to avoid bot detection (2-6 seconds)
         time.sleep(random.uniform(2, 6))
 
-        return art_list
+    return art_list
 
 def get_df_of_listings(page_depth):
 
@@ -126,11 +129,56 @@ def get_df_of_listings(page_depth):
     return art_df
 
 def get_unique_artists(art_dataframe):
+    
     unique_artists = []
 
     for n in range(0,len(art_dataframe.Artist.unique())):
         name = art_dataframe.Artist.unique()[n]
-        print(name)
         unique_artists.append(name)
 
     return unique_artists
+
+current_listings_df = get_df_of_listings(4)
+current_artists = get_unique_artists(current_listings_df)
+
+# Reddit r/Art portion:
+
+# Load environment variables
+load_dotenv()
+
+reddit = praw.Reddit(
+    client_id=os.getenv('REDDIT_CLIENT_ID'),
+    client_secret=os.getenv('REDDIT_CLIENT_SECRET'),
+    user_agent=os.getenv('REDDIT_USER_AGENT'),
+    username=os.getenv('REDDIT_USERNAME'),
+    password=os.getenv('REDDIT_PASSWORD')
+)
+
+def get_sentiment_score(artist_name):
+
+    commentList = []
+    submissions = reddit.subreddit("Art").search(f"{artist_name.lower()}", sort = "relevance")
+    
+    for submission in submissions:
+        submission.comments.replace_more(limit=0)  # Expand the "load more" comments
+        for top_level_comment in submission.comments:
+            
+            # Check if comment has a body (not deleted or removed)
+            if top_level_comment.body:
+                commentList.append(top_level_comment.body.lower())
+
+    sentiment_analyzer = SentimentIntensityAnalyzer()
+
+    compound_scores = []
+
+    for index, comment in enumerate(commentList, 1):
+        vs = sentiment_analyzer.polarity_scores(comment)
+        compound_scores.append(vs["compound"])
+
+    compound_scores
+
+    mean_score = float(np.mean(compound_scores))
+    return mean_score
+
+print(current_listings_df)
+print(current_artists)
