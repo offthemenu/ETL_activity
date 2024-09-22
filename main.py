@@ -193,6 +193,7 @@ current_artists_list = get_unique_artists(current_listings_df)
 current_scores_df = get_artist_score_df(current_artists_list)
 
 def get_final_df(df_of_listings, df_of_scores, disposable_income):
+    print(f"Based on your budget of {disposable_income}, here are our recommendations in a dataframe form...")
     merged_df = pd.merge(df_of_listings, df_of_scores, how="left", left_on="Artist", right_on="Artist")
     for index, row in merged_df.iterrows():
         if row["Sentiment Score"] > 0.1 and row["Current Price"] < disposable_income:
@@ -208,4 +209,4 @@ recs_df = get_final_df(current_listings_df, current_scores_df, limit_price).sort
 
 today_date = date.today()
 
-recs_df.to_csv(f"bid_recs_{today_date}".csv, index=False)
+recs_df.to_csv(f"bid_recs_{today_date}.csv", index=False)
