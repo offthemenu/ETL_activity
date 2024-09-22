@@ -17,7 +17,9 @@ Generates a CSV file of the recommended actions for bidding, making it easy to v
 
 ### Scraping Art Listings
 
-The script scrapes art auction listings from ArtNet based on the specified page depth:
+The script scrapes art auction listings from ArtNet based on the specified page depth.  
+
+For this prototype version, we recommend that you scroll down all the way through the bottom of ArtNet's listings to see how many pages there are when you run this code.
 
 ```py
 current_listings_df = get_df_of_listings(page_depth=4)
