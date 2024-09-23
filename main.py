@@ -282,7 +282,7 @@ def get_final_df(df_of_listings, df_of_scores, disposable_income):
 limit_price = float(input("How much are you willing to spend on a piece of artwork? "))
 
 # Generate recommendations based on sentiment scores and budget
-recs_df = get_final_df(current_listings_df, current_scores_df, limit_price).sort_values(by=["Sentiment Score","Days/Hours","Time Left"], ascending= [False, False, True])
+recs_df = get_final_df(current_listings_df, current_scores_df, limit_price).sort_values(by=["Bid Action","Days/Hours","Time Left"], ascending= [True, False, True])
 
 # Export the recommendations to a CSV file
 today_date = date.today()
