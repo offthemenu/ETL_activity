@@ -270,7 +270,7 @@ def get_final_df(df_of_listings, df_of_scores, disposable_income):
     
     # Iterate over each row and decide whether to recommend bidding or not based on the sentiment score and current price vs. budget/limit price
     for index, row in merged_df.iterrows():
-        if row["Sentiment Score"] > 0.1 and row["Current Price"] < disposable_income:
+        if row["Sentiment Score"] >= 0.1 and row["Current Price"] < disposable_income:
             merged_df.loc[index, "Bid Action"] = "Bid Higher"
         else:
             merged_df.loc[index, "Bid Action"] = "Do Not Bid"
@@ -282,7 +282,7 @@ def get_final_df(df_of_listings, df_of_scores, disposable_income):
 limit_price = float(input("How much are you willing to spend on a piece of artwork? "))
 
 # Generate recommendations based on sentiment scores and budget
-recs_df = get_final_df(current_listings_df, current_scores_df, limit_price).sort_values(by=["Sentiment Score"], ascending= False)
+recs_df = get_final_df(current_listings_df, current_scores_df, limit_price).sort_values(by=["Sentiment Score","Days/Hours","Time Left"], ascending= [False, False, True])
 
 # Export the recommendations to a CSV file
 today_date = date.today()
