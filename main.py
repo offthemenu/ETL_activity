@@ -272,4 +272,15 @@ recs_df = get_final_df(current_listings_df, current_scores_df, limit_price).sort
 
 # Export the recommendations to a CSV file
 today_date = date.today()
-recs_df.to_csv(f"bid_recs_{today_date}.csv", index=False)
+# recs_df.to_csv(f"bid_recs_{today_date}.csv", index=False)
+
+# print the recommended bids (Post-deadline add-on created on 9-23-24)
+print(f"These are our recommended bids:\n")
+for index, row in recs_df.iterrows():
+    artistname = row.Artist
+    piecename = row["Name of Piece"]
+    price = row["Current Price"]
+    numbids = row["Num of Bids"]
+    daysleft = row["Days Left"]
+    if row["Bid Action"] == "Bid Higher":
+        print(f"{piecename} by {artistname} is going for $ {price:,.2f} and has {numbids} bids with {daysleft} days left\n")
