@@ -65,5 +65,6 @@ By merging the auction data with sentiment analysis and considering your disposa
 **pandas** – for data manipulation.  
 **numpy** – for numerical operations.  
 ## Future Improvements  
-* Add support for more auction platforms.  
-* Expand sentiment analysis to other social media platforms.  
+Add support for more auction platforms.  
+
+Expand sentiment analysis to other social media platforms.  
