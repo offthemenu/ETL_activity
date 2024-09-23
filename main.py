@@ -127,27 +127,41 @@ def get_df_of_listings(page_depth):
             bids = 0
 
         # Extract the number of days left until the auction ends for that particular piece
+        # 9-23-24 Update: Only now realizing that the notation changes to  XX hours remaining once expiration date gets within a day
+        # Thankfully, the class notation remains the same
         expiration_element = art.find('li', {"ng-class": "{'red' : brick.Remaining.Days <= 0}"}).text.strip()
         if expiration_element:
             # extract the expiration value and turn it into an integer
-            expiration, daysText, remainingText = expiration_element.split(" ")
-            expiration = int(expiration)
-        
-        # Store the artwork information in a dictionary and append to the list
-        art_data.append({
-            "Artist": artist_name,
-            "Name of Piece": piece_name,
-            "Current Price": price,
-            "Currency": currency,
-            "Num of Bids": bids,
-            "Days Left": expiration
-            })
+            expiration, days_or_hours, remainingText = expiration_element.split(" ")
+            if days_or_hours == "days":
+                daysleft = int(expiration)
+                # Store the artwork information in a dictionary and append to the list
+                art_data.append({
+                    "Artist": artist_name,
+                    "Name of Piece": piece_name,
+                    "Current Price": price,
+                    "Currency": currency,
+                    "Num of Bids": bids,
+                    "Time Left": daysleft,
+                    "Days/Hours": "Days"
+                    })
+            elif days_or_hours == "hours":
+                hoursleft = int(expiration)
+                art_data.append({
+                    "Artist": artist_name,
+                    "Name of Piece": piece_name,
+                    "Current Price": price,
+                    "Currency": currency,
+                    "Num of Bids": bids,
+                    "Time Left": hoursleft,
+                    "Days/Hours": "Hours"
+                    })
     
     # Turn the list of dictionaries into a pandas dataframe
     art_df = pd.DataFrame(art_data)
 
-    # Sor the dataframe by "days left"
-    art_df = art_df.sort_values(by=["Days Left"], ascending= True).reset_index(drop=True)
+    # Sor the dataframe by remaining time
+    art_df = art_df.sort_values(by=["Days/Hours","Time Left"], ascending= [False, True]).reset_index(drop=True)
 
     # Return the dataframe containing the current listings
     return art_df
@@ -272,7 +286,7 @@ recs_df = get_final_df(current_listings_df, current_scores_df, limit_price).sort
 
 # Export the recommendations to a CSV file
 today_date = date.today()
-# recs_df.to_csv(f"bid_recs_{today_date}.csv", index=False)
+recs_df.to_csv(f"bid_recs_{today_date}.csv", index=False)
 
 # print the recommended bids (Post-deadline add-on created on 9-23-24)
 print(f"These are our recommended bids:\n")
@@ -281,6 +295,7 @@ for index, row in recs_df.iterrows():
     piecename = row["Name of Piece"]
     price = row["Current Price"]
     numbids = row["Num of Bids"]
-    daysleft = row["Days Left"]
+    timeleft = row["Time Left"]
+    daysorhours = row["Days/Hours"]
     if row["Bid Action"] == "Bid Higher":
-        print(f"{piecename} by {artistname} is going for $ {price:,.2f} and has {numbids} bids with {daysleft} days left\n")
+        print(f"{piecename} by {artistname} is going for $ {price:,.2f} and has {numbids} bid(s) with {timeleft} {daysorhours.lower()} left\n")
