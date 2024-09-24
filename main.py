@@ -300,7 +300,7 @@ recs_df = get_final_df(current_listings_df, current_scores_df, limit_price).sort
 
 # Export the recommendations to a CSV file
 today_date = date.today()
-# recs_df.to_csv(f"bid_recs_{today_date}.csv", index=False)
+recs_df.to_csv(f"bid_recs_{today_date}.csv", index=False)
 
 # print the recommended bids (Post-deadline add-on created on 9-23-24)
 print(f"These are our recommended bids:\n")
