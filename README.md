@@ -71,4 +71,6 @@ Expand sentiment analysis to other social media platforms.
 
 Create another layer in the dataframe based on the artwork's medium (oil, photography, mixed media, etc.)
 
+* Get Selenium to click through each listing on gallery view and get detailed descriptions of each listing
+
 ~~(Maybe) Use a benchmark sentiment analysis score using that of famous, well-selling artists such as Egon Schiele, Damien Hurst, and Jeff Koons and give recommendations based on distance scoring~~
