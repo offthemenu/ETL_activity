@@ -22,7 +22,7 @@ The script scrapes art auction listings from ArtNet based on the specified page 
 For this prototype version, we recommend that you scroll down all the way through the bottom of ArtNet's listings to see how many pages there are when you run this code.
 
 ```py
-current_listings_df = get_df_of_listings(page_depth=4)
+current_listings_df = get_df_of_listings(page_depth = num_of_pages)
 ```
 
 You can adjust page_depth to control how many pages of listings are scraped.
@@ -42,6 +42,7 @@ Input your disposable income, and the script will generate recommendations based
 
 ```python
 limit_price = float(input("How much are you willing to spend on a piece of artwork? "))
+
 recs_df = get_final_df(current_listings_df, current_scores_df, limit_price)
 ```
 
