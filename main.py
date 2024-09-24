@@ -262,18 +262,32 @@ def get_final_df(df_of_listings, df_of_scores, disposable_income):
     '''
     Merges artwork listings with sentiment scores and provides bid recommendations based on sentiment and budget.
     '''
+    print(f"We'll ask the names of three of your favorite, prominent artists to get a better sense of your taste.\n")
+    benchmark1 = input("Please state the name of the first artist")
+    benchmark2 = input("Please state the name of the second artist")
+    benchmark3 = input("Please state the name of the third artist")
+    print()
+    print(f"Calculating benchmark sentiment score...")
+    score1 = get_sentiment_score(benchmark1)
+    score2 = get_sentiment_score(benchmark2)
+    score3 = get_sentiment_score(benchmark3)
+    mean_benchmark = float(np.mean([score1, score2, score3]))
 
-    print(f"Based on your budget of {disposable_income}, here are our recommendations in a dataframe form...\n")
-    
     # Merge listings and sentiment scores DataFrames on the Artist column
     merged_df = pd.merge(df_of_listings, df_of_scores, how="left", left_on="Artist", right_on="Artist")
     
+    print(f"Based on your budget of {disposable_income}, here are our recommendations in a dataframe form...\n")
+
     # Iterate over each row and decide whether to recommend bidding or not based on the sentiment score and current price vs. budget/limit price
     for index, row in merged_df.iterrows():
-        if row["Sentiment Score"] >= 0.1 and row["Current Price"] < disposable_income:
-            merged_df.loc[index, "Bid Action"] = "Bid Higher"
+        difference = mean_benchmark - row["Sentiment Score"]
+        merged_df.loc[index, "Distance Score"] = abs(difference)
+        if abs(difference) <= 0.2 and row["Current Price"] < disposable_income:
+            recommendation = "Bid Higher"
+            merged_df.loc[index, "Bid Action"] = recommendation
         else:
-            merged_df.loc[index, "Bid Action"] = "Do Not Bid"
+            recommendation = "Do Not Bid"
+            merged_df.loc[index, "Bid Action"] = recommendation
     
     # Return the DataFrame with bid recommendations
     return merged_df
@@ -282,7 +296,7 @@ def get_final_df(df_of_listings, df_of_scores, disposable_income):
 limit_price = float(input("How much are you willing to spend on a piece of artwork? "))
 
 # Generate recommendations based on sentiment scores and budget
-recs_df = get_final_df(current_listings_df, current_scores_df, limit_price).sort_values(by=["Bid Action","Days/Hours","Time Left"], ascending= [True, False, True])
+recs_df = get_final_df(current_listings_df, current_scores_df, limit_price).sort_values(by=["Bid Action","Current Price","Days/Hours","Time Left"], ascending= [True, True, False, True])
 
 # Export the recommendations to a CSV file
 today_date = date.today()
