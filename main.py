@@ -156,6 +156,17 @@ def get_df_of_listings(page_depth):
                     "Time Left": hoursleft,
                     "Days/Hours": "Hours"
                     })
+            elif days_or_hours == "minutes":
+                hoursleft = 1
+                art_data.append({
+                    "Artist": artist_name,
+                    "Name of Piece": piece_name,
+                    "Current Price": price,
+                    "Currency": currency,
+                    "Num of Bids": bids,
+                    "Time Left": hoursleft,
+                    "Days/Hours": "Hours"
+                    })
     
     # Turn the list of dictionaries into a pandas dataframe
     art_df = pd.DataFrame(art_data)
