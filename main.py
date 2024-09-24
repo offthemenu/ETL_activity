@@ -263,9 +263,9 @@ def get_final_df(df_of_listings, df_of_scores, disposable_income):
     Merges artwork listings with sentiment scores and provides bid recommendations based on sentiment and budget.
     '''
     print(f"We'll ask the names of three of your favorite, prominent artists to get a better sense of your taste.\n")
-    benchmark1 = input("Please state the name of the first artist")
-    benchmark2 = input("Please state the name of the second artist")
-    benchmark3 = input("Please state the name of the third artist")
+    benchmark1 = input("Please state the name of the first artist: ")
+    benchmark2 = input("Please state the name of the second artist: ")
+    benchmark3 = input("Please state the name of the third artist: ")
     print()
     print(f"Calculating benchmark sentiment score...")
     score1 = get_sentiment_score(benchmark1)
