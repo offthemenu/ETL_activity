@@ -263,7 +263,7 @@ def get_final_df(df_of_listings, df_of_scores, disposable_income):
     Merges artwork listings with sentiment scores and provides bid recommendations based on sentiment and budget.
     '''
 
-    print(f"Based on your budget of {disposable_income}, here are our recommendations in a dataframe form...")
+    print(f"Based on your budget of {disposable_income}, here are our recommendations in a dataframe form...\n")
     
     # Merge listings and sentiment scores DataFrames on the Artist column
     merged_df = pd.merge(df_of_listings, df_of_scores, how="left", left_on="Artist", right_on="Artist")
