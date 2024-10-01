@@ -1,0 +1,67 @@
+Artist,Name of Piece,Current Price,Currency,Num of Bids,Time Left,Days/Hours,Sentiment Score,Distance Score,Bid Action
+Mona Kuhn,AD6046,4600.0,USD,1,22,Hours,0.0,0.0,Bid Higher
+Alex Prager,Nancy,4800.0,USD,1,22,Hours,0.0,0.0,Bid Higher
+Alex Prager,Nancy,4800.0,USD,1,22,Hours,0.0,0.0,Bid Higher
+Edward Burtynsky,Ferrous Bushlin...,5000.0,USD,1,22,Hours,0.0,0.0,Bid Higher
+Philip-Lorca diCorcia,London,5000.0,USD,1,22,Hours,0.0,0.0,Bid Higher
+Edward Burtynsky,Ferrous Bushlin...,5000.0,USD,1,22,Hours,0.0,0.0,Bid Higher
+Sid Avery,Ocean's 11 Cast...,5000.0,USD,1,23,Hours,0.0,0.0,Bid Higher
+Viviane Sassen,Mimi,5000.0,USD,0,23,Hours,0.0,0.0,Bid Higher
+Viviane Sassen,Parasomnia,5000.0,USD,0,23,Hours,0.0,0.0,Bid Higher
+Scott Peterman,CR1,5000.0,USD,0,23,Hours,0.0,0.0,Bid Higher
+Edward Burtynsky,Shipbreaking #1...,5500.0,USD,2,23,Hours,0.0,0.0,Bid Higher
+Mark Klett,Entering a Narr...,6000.0,USD,0,22,Hours,0.0,0.0,Bid Higher
+John Chiara,Hunterbrook at ...,6000.0,USD,1,23,Hours,0.0,0.0,Bid Higher
+David Benjamin Sherry,"Cobalt Cliffs, ...",7000.0,USD,1,21,Hours,0.0,0.0,Bid Higher
+David Benjamin Sherry,"Cobalt Cliffs, ...",7000.0,USD,1,21,Hours,0.0,0.0,Bid Higher
+Rosemary Laing,bulletproofglas...,7000.0,USD,4,22,Hours,0.0,0.0,Bid Higher
+Rosemary Laing,bulletproofglas...,7000.0,USD,4,22,Hours,0.0,0.0,Bid Higher
+Annie Leibovitz,"John Lennon, Ne...",7500.0,USD,0,22,Hours,0.0,0.0,Bid Higher
+Matthew Brandt,"Lake Tapps, WA 1",8000.0,USD,0,23,Hours,0.0,0.0,Bid Higher
+Michael Brennan,Muhammad Ali,8500.0,USD,2,22,Hours,0.0,0.0,Bid Higher
+Abelardo Morell,Camera Ob...,9000.0,USD,1,21,Hours,0.0,0.0,Bid Higher
+Abelardo Morell,Camera Ob...,9000.0,USD,1,21,Hours,0.0,0.0,Bid Higher
+Vik Muniz,Rouen Cathedral...,10000.0,USD,1,21,Hours,0.0,0.0,Bid Higher
+Vik Muniz,Rouen Cathedral...,10000.0,USD,1,21,Hours,0.0,0.0,Bid Higher
+James Welling,5237,10000.0,USD,0,22,Hours,0.0,0.0,Bid Higher
+Edward Burtynsky,Socar Oil Field...,10000.0,USD,0,23,Hours,0.0,0.0,Bid Higher
+Alex Prager,"2 pm, Interstat...",11000.0,USD,2,22,Hours,0.0,0.0,Bid Higher
+Flip Schulke,Ali Underwater,12500.0,USD,0,22,Hours,0.0,0.0,Bid Higher
+Herb Ritts,"Jack Nicholson,...",12500.0,USD,0,22,Hours,0.0,0.0,Bid Higher
+Shirin Neshat,Untitled (Raptu...,12500.0,USD,0,22,Hours,0.0,0.0,Bid Higher
+Flip Schulke,Ali Underwater,12500.0,USD,0,22,Hours,0.0,0.0,Bid Higher
+Elger Esser,"Quinciano, Italien",12500.0,USD,0,23,Hours,0.0,0.0,Bid Higher
+Doug and Mike Starn,jeschetbu (10 S...,12500.0,USD,0,23,Hours,0.0,0.0,Bid Higher
+Vik Muniz,"Dallas Mill, Hu...",14000.0,USD,2,21,Hours,0.0,0.0,Bid Higher
+Vik Muniz,"Dallas Mill, Hu...",14000.0,USD,2,21,Hours,0.0,0.0,Bid Higher
+Shirin Neshat,Untitled (Raptu...,15000.0,USD,1,21,Hours,0.0,0.0,Bid Higher
+Lalla Essaydi,Bullets Revisit...,15000.0,USD,1,21,Hours,0.0,0.0,Bid Higher
+Andres Serrano,Hercules Punish...,15000.0,USD,1,21,Hours,0.0,0.0,Bid Higher
+Shirin Neshat,Untitled (Raptu...,15000.0,USD,1,21,Hours,0.0,0.0,Bid Higher
+Lalla Essaydi,Bullets Revisit...,15000.0,USD,1,21,Hours,0.0,0.0,Bid Higher
+Andres Serrano,Hercules Punish...,15000.0,USD,1,21,Hours,0.0,0.0,Bid Higher
+Nobuyoshi Araki,Yakusa,15000.0,USD,1,22,Hours,0.0,0.0,Bid Higher
+Steve McCurry,Camels in Dust ...,15000.0,USD,0,23,Hours,0.0,0.0,Bid Higher
+Steve McCurry,Impromptu Footb...,15000.0,USD,0,23,Hours,0.0,0.0,Bid Higher
+Steve McCurry,Boat Covered in...,15000.0,USD,0,23,Hours,0.0,0.0,Bid Higher
+Sally Mann,Landscape Missi...,16000.0,USD,2,21,Hours,0.0,0.0,Bid Higher
+Sally Mann,Landscape Missi...,16000.0,USD,2,21,Hours,0.0,0.0,Bid Higher
+Matthew Brandt,From the series...,17000.0,USD,8,21,Hours,0.0,0.0,Bid Higher
+Matthew Brandt,From the series...,17000.0,USD,8,21,Hours,0.0,0.0,Bid Higher
+Mario Testino,"Kate Moss, for ...",17500.0,USD,0,22,Hours,0.0,0.0,Bid Higher
+David Yarrow,Elephant Uprisi...,20000.0,USD,0,21,Hours,0.0,0.0,Bid Higher
+Franco Rubartelli,"Veruschka, Safa...",20000.0,USD,1,21,Hours,0.0,0.0,Bid Higher
+David Yarrow,Elephant Uprisi...,20000.0,USD,0,21,Hours,0.0,0.0,Bid Higher
+Franco Rubartelli,"Veruschka, Safa...",20000.0,USD,1,21,Hours,0.0,0.0,Bid Higher
+Vanessa Beecroft,Rivoli Sister P...,20000.0,USD,0,22,Hours,0.0,0.0,Bid Higher
+Nick Brandt,Elephant Exodus...,20000.0,USD,0,22,Hours,0.0,0.0,Bid Higher
+Richard Misrach,"November 21, 20...",22000.0,USD,3,21,Hours,0.0,0.0,Bid Higher
+Richard Misrach,"November 21, 20...",22000.0,USD,3,21,Hours,0.0,0.0,Bid Higher
+Florian Maier-Aichen,Untitled,24000.0,USD,3,21,Hours,0.0,0.0,Bid Higher
+Florian Maier-Aichen,Untitled,24000.0,USD,3,21,Hours,0.0,0.0,Bid Higher
+David Yarrow,"Hello, Alaska",25000.0,USD,0,22,Hours,0.0,0.0,Bid Higher
+David Yarrow,"Hello, Alaska",25000.0,USD,0,22,Hours,0.0,0.0,Bid Higher
+Ruud van Empel,World #37,40000.0,USD,0,21,Hours,0.0,0.0,Bid Higher
+Ruud van Empel,World #37,40000.0,USD,0,21,Hours,0.0,0.0,Bid Higher
+Peter Beard,Elephant with T...,46000.0,USD,4,21,Hours,0.0,0.0,Bid Higher
+Peter Beard,Elephant with T...,46000.0,USD,4,21,Hours,0.0,0.0,Bid Higher

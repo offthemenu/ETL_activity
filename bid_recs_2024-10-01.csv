@@ -1,0 +1,74 @@
+Artist,Name of Piece,Current Price,Currency,Num of Bids,Time Left,Days/Hours,Sentiment Score,Distance Score,Bid Action
+Ellsworth Kelly,Orange/Green,6500.0,USD,1,8,Days,0.4646714285714286,0.13883645113065274,Bid Higher
+Petra Cortright,Void Mastery/Bl...,9000.0,USD,0,14,Days,0.453575,0.12774002255922412,Bid Higher
+Sol LeWitt,"Arcs, Circles &...",10000.0,USD,0,8,Days,0.3020260869565217,0.023808890484254164,Bid Higher
+KAWS,You Should Know...,10000.0,USD,0,8,Days,0.2835605263157895,0.0422744511249864,Bid Higher
+Gerhard Richter,Cage (P19-5),12500.0,USD,0,8,Days,0.31652560975609756,0.009309367684678327,Bid Higher
+Ellsworth Kelly,Grape Leav...,12500.0,USD,0,8,Days,0.4646714285714286,0.13883645113065274,Bid Higher
+RETNA,Eastern Realm (...,12500.0,USD,0,8,Days,0.4228142857142857,0.09697930827350981,Bid Higher
+Katherine Bradford,Swimmer and UFOI,12500.0,USD,0,14,Days,0.27699999999999997,0.04883497744077592,Bid Higher
+Katherine Bradford,Swim Couple Und...,13500.0,USD,0,14,Days,0.27699999999999997,0.04883497744077592,Bid Higher
+John Baldessari,Fox: Maquette f...,13500.0,USD,0,14,Days,0.27674,0.0490949774407759,Bid Higher
+Jeff Koons,Diamond (Blue),15000.0,USD,0,8,Days,0.26010613496932516,0.06572884247145072,Bid Higher
+Andy Warhol,Fish,15000.0,USD,0,8,Days,0.24895398230088497,0.07688099513989091,Bid Higher
+Andy Warhol,Golden Mushroom...,20000.0,USD,0,8,Days,0.24895398230088497,0.07688099513989091,Bid Higher
+Josh Smith,Untitled (JS07192),21000.0,USD,0,14,Days,0.4472714285714285,0.1214364511306526,Bid Higher
+David Hockney,"‘No. 778’, 17th...",25000.0,USD,0,8,Days,0.26570454545454547,0.060130431986230415,Bid Higher
+Tracey Emin,You Hold Onto Me,25000.0,USD,0,8,Days,0.3690375,0.04320252255922413,Bid Higher
+Andy Warhol,After the Party,25000.0,USD,2,8,Days,0.24895398230088497,0.07688099513989091,Bid Higher
+Banksy,I Fought the Law,26000.0,USD,1,8,Days,0.17231787994891445,0.15351709749186143,Bid Higher
+Jeff Koons,Balloon Dog (Blue),30000.0,USD,0,8,Days,0.26010613496932516,0.06572884247145072,Bid Higher
+Roy Lichtenstein,I Love Liberty,42000.0,USD,2,8,Days,0.2954883928571429,0.030346584583632985,Bid Higher
+Roby Dwi Antono,Hayu,50000.0,USD,0,14,Days,0.32903333333333334,0.0031983558925574584,Bid Higher
+Banksy,Soup Can,55000.0,USD,0,8,Days,0.17231787994891445,0.15351709749186143,Bid Higher
+Nicolas Party,Untitled,2500.0,USD,0,14,Days,0.8585,0.5326650225592242,Do Not Bid
+Tom Wesselmann,Cynthia in the ...,5000.0,USD,1,8,Days,-0.015699999999999992,0.3415349774407759,Do Not Bid
+Damien Hirst,Canon,5000.0,USD,1,8,Days,0.098925,0.2269099774407759,Do Not Bid
+Richard Aldrich,Reshifting Cont...,6000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Kcho,Hablar de lo ev...,6000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Keltie Ferris,WVVW,8000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Enrique Riverón,Sur la Lu...,8000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Juan Uslé,Confinado (Locuaz),8000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Dorothea Rockburne,Study for Inner...,9000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Jim Dine,Untitled,9000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Ed Ruscha,Drops,10000.0,USD,2,8,Days,0.07543333333333334,0.25040164410744253,Do Not Bid
+Jaune Quick-to-See Smith,Mother and Chil...,10000.0,USD,0,8,Days,0.0,0.3258349774407759,Do Not Bid
+Alex Katz,Harbor,10000.0,USD,0,8,Days,0.0,0.3258349774407759,Do Not Bid
+Alex Katz,Coca-Cola Girl 6,12500.0,USD,0,8,Days,0.0,0.3258349774407759,Do Not Bid
+Susan Rothenberg,Three Trees,12500.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Allan McCollum,Plaster Surrogates,12500.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Robert Barry,Untitled (Grey ...,12500.0,USD,0,14,Days,0.04991,0.2759249774407759,Do Not Bid
+Bernard Harmon,School Girl,12500.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Piero Dorazio,Eye and Cross 5th,13500.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Christopher Wool,Black Book,15000.0,USD,0,8,Days,0.0,0.3258349774407759,Do Not Bid
+Callum Innes,Exposed Paintin...,15000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Futura,Untitled,15000.0,USD,0,14,Days,0.04311797752808989,0.282716999912686,Do Not Bid
+Jonas Wood,Untitled,17500.0,USD,0,8,Days,0.67525,0.34941502255922413,Do Not Bid
+Julian Opie,"Dance, Figure 3",17500.0,USD,0,8,Days,-0.15415,0.4799849774407759,Do Not Bid
+Julian Opie,Heads (complete...,17500.0,USD,0,8,Days,-0.15415,0.4799849774407759,Do Not Bid
+Jonas Wood,Untitled,17500.0,USD,0,8,Days,0.67525,0.34941502255922413,Do Not Bid
+Kenny Scharf,Paradis Perdu,17500.0,USD,0,8,Days,0.5999333333333333,0.27409835589255743,Do Not Bid
+Julian Opie,Nature 1: Boat ...,17500.0,USD,0,8,Days,-0.15415,0.4799849774407759,Do Not Bid
+Tom Wesselmann,Still Life with...,19000.0,USD,2,8,Days,-0.015699999999999992,0.3415349774407759,Do Not Bid
+Jonas Wood,Shelf Still Life,20000.0,USD,0,8,Days,0.67525,0.34941502255922413,Do Not Bid
+Aboudia and Christian Furr,Coast to Coast,20000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Stephan Balkenhol,Thinker (Denker),21500.0,USD,0,8,Days,0.0,0.3258349774407759,Do Not Bid
+Eduardo Terrazas,Possibilit...,25000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Damien Hirst,St. Paul (from ...,30000.0,USD,0,8,Days,0.098925,0.2269099774407759,Do Not Bid
+Sean Scully,Robe 2.16.19,30000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Futura,Foreign Soil,30000.0,USD,0,14,Days,0.04311797752808989,0.282716999912686,Do Not Bid
+Alan Charlton,11 Vertica...,30000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Alex Katz,Summer Flowers,40000.0,USD,0,8,Days,0.0,0.3258349774407759,Do Not Bid
+Maureen Gallace,"Easter Sunday, ...",40000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Suzan Frecon,Untitled (west),40000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Ione Saldanha,Cidade,40000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Jack Pierson,Hell,50000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Lynette Yiadom-Boakye,Addicktion,60000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Tony Cragg,In Frequencies,70000.0,USD,0,8,Days,0.0,0.3258349774407759,Do Not Bid
+Imi Knoebel,Pure Freud 53,70000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Ross Bleckner,Flowers,70000.0,USD,0,14,Days,0.0,0.3258349774407759,Do Not Bid
+Andy Warhol,John Wayne (fro...,100000.0,USD,3,8,Days,0.24895398230088497,0.07688099513989091,Do Not Bid
+Andy Warhol,Bald Eagle (fro...,130000.0,USD,3,8,Days,0.24895398230088497,0.07688099513989091,Do Not Bid
+Andy Warhol,Grace Kelly,150000.0,USD,0,8,Days,0.24895398230088497,0.07688099513989091,Do Not Bid
+Andy Warhol,Siberian Tiger ...,160000.0,USD,3,8,Days,0.24895398230088497,0.07688099513989091,Do Not Bid
+Andy Warhol,Mickey Mouse (f...,200000.0,USD,0,8,Days,0.24895398230088497,0.07688099513989091,Do Not Bid
